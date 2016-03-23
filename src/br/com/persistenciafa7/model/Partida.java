@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,7 +56,7 @@ public class Partida extends BaseModel {
 	@Basic(optional = false)
 	private Integer golsVisitante;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinTable(name="ESCALACOES", 
 			   joinColumns=@JoinColumn(name="id_partida"),
 			   inverseJoinColumns=@JoinColumn(name="id_jogador"))

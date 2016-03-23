@@ -1,9 +1,10 @@
 package br.com.persistenciafa7.util;
 
 import org.hibernate.Session;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import br.com.persistencia.fa7.interceptors.ModelInterceptor;
 public class HibernateUtil {
 
 	private static SessionFactory sf = null;
@@ -23,7 +24,10 @@ public class HibernateUtil {
 		if(sf == null) {
 			synchronized (SessionFactory.class) {
 				if(sf == null) {
-					sf = new Configuration().configure().buildSessionFactory();
+					Configuration c = new Configuration();
+					c.setInterceptor(new ModelInterceptor());
+					
+					sf = c.configure().buildSessionFactory();
 				}
 			}
 		}

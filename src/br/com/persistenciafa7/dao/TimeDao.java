@@ -19,7 +19,6 @@ public class TimeDao extends GenericDao {
 	public Time findByName(String nome) {
 		Criteria c = session.createCriteria(Time.class)
 		.add(Restrictions.eq("nome", nome));
-		
 		return (Time) c.uniqueResult();
 	}
 }
